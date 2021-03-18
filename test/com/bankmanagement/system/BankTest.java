@@ -14,9 +14,7 @@ class BankTest {
 
     @BeforeEach
     void setUp() {
-        bank = new Bank("Bank name", "bank Id", "Bank address",
-                new Customer(" customer name", "Cus101", "093626525",
-                        "tome@gmail.com"));
+        bank = new Bank("Bank name", "bank Id", "Bank address");
 
         new Customer(" customer name", "Cus101", "093626525",
                 "tome@gmail.com");
@@ -46,18 +44,24 @@ class BankTest {
 
     @Test
     void bankHasCustomer(){
+        new Customer(" customer name", "Cus101", "093626525",
+                "tome@gmail.com");
+        bank.addCustomer(customer);
         assertEquals(1, bank.getCustomer().size());
     }
 
     @Test
     void bankCanRemoveCustomer(){
-        bank.removeCustomer("customerId");
+        bank.removeCustomer("Cus101");
         assertEquals(0, bank.getCustomer().size());
     }
 
     @Test
     void bankCanAddCustomer(){
+        Customer newCustomer=new Customer("jkjksajk,", "hh", "999", "8i");
+        bank.addCustomer(newCustomer);
+        bank.addCustomer(newCustomer);
         bank.addCustomer(customer);
-        assertEquals(1, bank.getCustomer().size());
+        assertEquals(3, bank.getCustomer().size());
     }
 }

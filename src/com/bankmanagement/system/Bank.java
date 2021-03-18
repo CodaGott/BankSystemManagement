@@ -10,12 +10,12 @@ public class Bank {
     private String bankAddress;
     private List<Customer> customerList;
 
-    public Bank(String bankName, String bankId, String bankAddress, Customer customer) {
+    public Bank(String bankName, String bankId, String bankAddress) {
         this.bankName = bankName;
         this.bankId = bankId;
         this.bankAddress = bankAddress;
         customerList = new ArrayList<>();
-        customerList.add(customer);
+//        customerList.add(customer);
     }
 
     public void setName(String bankName) {
@@ -47,11 +47,18 @@ public class Bank {
     }
 
     public void addCustomer(Customer customer) {
-
+        customerList.add(customer);
     }
 
 
     public void removeCustomer(String customerId) {
         Customer toRemove = null;
+        for (Customer customer : customerList){
+            if (customer.getCustomerId().equalsIgnoreCase(customerId)){
+                toRemove = customer;
+                break;
+            }
+        }
+        customerList.remove(toRemove);
     }
 }
